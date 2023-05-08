@@ -189,3 +189,34 @@ function randomPosition() {
 function cookFood() {
     food = new Node(randomPosition(), randomPosition(), clrRed)
 }
+
+
+//lang
+const langSelect = document.querySelector("#languageSelector")
+
+const elements = {
+    start: document.getElementById("startBtn"),
+    author: document.getElementById("author"),
+    randomSentenceToTakeupSpace: document.getElementById("randomSentenceToTakeupSpace")
+}
+const langs = {
+    hun:{
+        start: "Kezdés",
+        author: "Készítette: Horváth Péter",
+        randomSentenceToTakeupSpace: "Nem a legeredetibb ötlet de ehez biztos kell egy hét hogy kész legyen (tévedtem)"
+    },
+    eng:{
+        start: "Start",
+        author: "Author",
+        randomSentenceToTakeupSpace: "Not the most original idea, but it must take a week to be ready (I was wrong)"
+    }
+}
+
+
+function languageChange() {
+    for (let e in elements) {
+        console.log(e);
+        elements[e].innerText = langs[langSelect.value][e]
+        
+    }
+}
