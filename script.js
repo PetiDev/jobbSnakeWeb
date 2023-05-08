@@ -93,18 +93,22 @@ class Snake {
 document.addEventListener("keydown", ({ key }) => {
     switch (key) {
         case "ArrowUp":
+            if (snake.direction == "down") return;
             snake.direction = "up"
             break;
-
-        case "ArrowDown":
+            
+            case "ArrowDown":
+            if (snake.direction == "up") return;
             snake.direction = "down"
             break;
-
-        case "ArrowLeft":
+            
+            case "ArrowLeft":
+            if (snake.direction == "right") return;
             snake.direction = "left"
             break;
-
-        case "ArrowRight":
+            
+            case "ArrowRight":
+            if (snake.direction == "left") return;
             snake.direction = "right"
             break;
 
@@ -142,7 +146,7 @@ function die() {
 
 function randomPosition() {
     
-    return Math.round(Math.random() * (c.clientWidth / widthInNodes)) * widthInNodes
+    return c.clientWidth/widthInNodes * Math.floor(Math.random() * widthInNodes)
 }
 
 function cookFood() {
