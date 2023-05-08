@@ -34,7 +34,7 @@ class Snake {
         this.#nodes.push(new Node(0, NodeSize, clrGreen))
     }
     eat() {
-        this.#nodes.push(new Node(this.#nodes[-1].x, this.#nodes[-1].y))
+        this.#nodes.push(new Node(this.#nodes[1].x, this.#nodes[1].y))
     }
     draw() {
         this.move();
