@@ -1,4 +1,5 @@
 const clrGreen = getComputedStyle(document.documentElement).getPropertyValue("--clr-green");
+const clrRed = getComputedStyle(document.documentElement).getPropertyValue("--clr-red");
 
 const c = document.getElementById("theCanvas");
 const ctx = c.getContext("2d");
@@ -159,5 +160,5 @@ function randomPosition() {
 }
 
 function cookFood() {
-    food = new Node(randomPosition(), randomPosition(), "red")
+    food = new Node(randomPosition(), randomPosition(), clrRed)
 }

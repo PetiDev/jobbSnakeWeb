@@ -2,7 +2,7 @@
     font-family: Calibri, trebuchet ms, sans-serif;
     --clr-dark: rgb(25, 26, 25);
     --clr-light: rgb(250, 250, 250);
-    --clr-primary: rgb(163, 38, 51);
+    --clr-red: rgb(163, 38, 80);
     --clr-green: hsl(121, 62%, 39%);
     --clr-notImportant-text: gray;
 }
