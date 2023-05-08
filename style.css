@@ -30,7 +30,7 @@ main{
     grid-template-rows:1fr;
     background-color: var(--clr-dark);
     padding: 1rem;
-    height: calc(100vh - 6rem);
+    height: calc(100vh - 7rem);
 }
 canvas{
     width: 480px;
