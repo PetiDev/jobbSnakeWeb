@@ -101,21 +101,25 @@ class Snake {
 //key events
 document.addEventListener("keydown", ({ key }) => {
     switch (key) {
+        case "w":
         case "ArrowUp":
             if (snake.direction == "down") return;
             snake.direction = "up"
             break;
 
+        case "s":
         case "ArrowDown":
             if (snake.direction == "up") return;
             snake.direction = "down"
             break;
 
+        case "a":
         case "ArrowLeft":
             if (snake.direction == "right") return;
             snake.direction = "left"
             break;
 
+        case "d":
         case "ArrowRight":
             if (snake.direction == "left") return;
             snake.direction = "right"
@@ -143,8 +147,8 @@ ctx.strokeRect(0, 0, c.clientWidth, c.clientHeight)
 ctx.font = "90px Comic Sans MS";
 
 ctx.save();
-ctx.translate(c.clientWidth/2, c.clientWidth/2);
-ctx.rotate(Math.PI/4);
+ctx.translate(c.clientWidth / 2, c.clientWidth / 2);
+ctx.rotate(Math.PI / 4);
 ctx.textAlign = "center";
 ctx.fillText("Snake", 0, 0);
 ctx.restore();
