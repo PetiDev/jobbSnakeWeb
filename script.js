@@ -121,6 +121,10 @@ document.addEventListener("keydown", ({ key }) => {
             snake.direction = "right"
             break;
 
+        case " ":
+            startGame()
+            break;
+
         default:
             break;
     }
@@ -130,11 +134,24 @@ let food;
 let snake = new Snake();
 cookFood()
 
-ctx.font = "40px Calibri";
 
 ctx.strokeStyle = clrGreen;
 ctx.fillStyle = clrGreen;
 ctx.strokeRect(0, 0, c.clientWidth, c.clientHeight)
+
+
+ctx.font = "90px Comic Sans MS";
+
+ctx.save();
+ctx.translate(c.clientWidth/2, c.clientWidth/2);
+ctx.rotate(Math.PI/4);
+ctx.textAlign = "center";
+ctx.fillText("Snake", 0, 0);
+ctx.restore();
+
+ctx.font = "40px Calibri";
+
+
 
 function startGame() {
     if (game) clearInterval(game)
