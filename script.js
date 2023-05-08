@@ -9,6 +9,7 @@ ctx.canvas.height = c.clientHeight;
 const widthInNodes = 15 //how many nodes needed maximum to go across the map
 
 let game;
+let score = 0;
 
 const NodeSize = ctx.canvas.width / widthInNodes;
 class Node {
@@ -36,6 +37,7 @@ class Snake {
     }
     eat() {
         this.#nodes.push(new Node(this.#nodes[1].x, this.#nodes[1].y))
+        score++
     }
     draw() {
         this.move();
@@ -128,6 +130,8 @@ let food;
 let snake = new Snake();
 cookFood()
 
+ctx.font = "40px Calibri";
+
 ctx.strokeStyle = clrGreen;
 ctx.fillStyle = clrGreen;
 ctx.strokeRect(0, 0, c.clientWidth, c.clientHeight)
@@ -136,6 +140,7 @@ function startGame() {
     if (game) clearInterval(game)
     snake = new Snake();
     cookFood()
+    score = 0
 
     game = setInterval(() => {
         ctx.strokeStyle = clrGreen;
@@ -143,14 +148,15 @@ function startGame() {
         ctx.clearRect(0, 0, c.clientWidth, c.clientHeight)
         ctx.strokeRect(0, 0, c.clientWidth, c.clientHeight)
         snake.draw();
-        food.draw()
+        food.draw();
+
+        ctx.fillText(score, c.clientWidth / 2, c.clientHeight / 2);
     }, 500);
 }
 
 function die() {
     clearInterval(game)
     console.log("dead");
-
 
 }
 
