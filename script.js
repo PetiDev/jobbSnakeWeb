@@ -220,7 +220,22 @@ const langs = {
         start: "Start",
         author: "Author",
         randomSentenceToTakeupSpace: "Not the most original idea, but it must take a week to be ready (I was wrong)"
-    }
+    },
+    tur:{ //török
+        start: "Başlat",
+        author: "Yapan: Péter Horváth",
+        randomSentenceToTakeupSpace: "En orijinal fikir değil, ama hazır olması bir hafta sürmeli (yanılmışım)"
+    },
+    jap:{ //japán
+        start:"開始",
+        author: "作成者: ピーター・ホルヴァート",
+        randomSentenceToTakeupSpace:"最も独創的なアイデアではありませんが、準備が整うまでに 1 週​​間はかかるはずです (私が間違っていました)"
+    },
+    urd: { //urdu
+        start: "شروع",
+        author: "تیار کردہ: Péter Horváth",
+        randomSentenceToTakeupSpace: "سب سے زیادہ اصل خیال نہیں، لیکن اسے تیار ہونے میں ایک ہفتہ لگنا چاہیے (میں غلط تھا)"
+    },
 }
 
 
