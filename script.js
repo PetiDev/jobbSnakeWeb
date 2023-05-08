@@ -28,73 +28,72 @@ class Node {
 }
 
 class Snake {
-    #nodes = [];
+    nodes = [];
     direction = "right";
     constructor() {
-        this.#nodes.push(new Node(NodeSize, NodeSize, clrGreen));
-        this.#nodes.push(new Node(0, NodeSize, clrGreen))
-        this.#nodes.push(new Node(0, NodeSize, clrGreen))
+        this.nodes.push(new Node(NodeSize, NodeSize, clrGreen));
+        this.nodes.push(new Node(0, NodeSize, clrGreen))
+        this.nodes.push(new Node(0, NodeSize, clrGreen))
     }
     eat() {
-        this.#nodes.push(new Node(this.#nodes[1].x, this.#nodes[1].y))
+        this.nodes.push(new Node(this.nodes[1].x, this.nodes[1].y))
         score++
     }
     draw() {
         this.move();
-        this.#nodes.forEach(n => {
+        this.nodes.forEach(n => {
             n.draw()
         })
     }
     move() {
-        let lastNode = this.#nodes.pop()
+        let lastNode = this.nodes.pop()
         switch (this.direction) {
             case "up":
-                lastNode.y = this.#nodes[0].y - NodeSize;
-                lastNode.x = this.#nodes[0].x;
-                this.#nodes.unshift(lastNode);
+                lastNode.y = this.nodes[0].y - NodeSize;
+                lastNode.x = this.nodes[0].x;
+                this.nodes.unshift(lastNode);
                 break;
 
             case "down":
-                lastNode.y = this.#nodes[0].y + NodeSize;
-                lastNode.x = this.#nodes[0].x;
-                this.#nodes.unshift(lastNode);
+                lastNode.y = this.nodes[0].y + NodeSize;
+                lastNode.x = this.nodes[0].x;
+                this.nodes.unshift(lastNode);
                 break;
 
             case "left":
-                lastNode.x = this.#nodes[0].x - NodeSize;
-                lastNode.y = this.#nodes[0].y;
-                this.#nodes.unshift(lastNode);
+                lastNode.x = this.nodes[0].x - NodeSize;
+                lastNode.y = this.nodes[0].y;
+                this.nodes.unshift(lastNode);
                 break;
 
             case "right":
-                lastNode.x = this.#nodes[0].x + NodeSize;
-                lastNode.y = this.#nodes[0].y;
-                this.#nodes.unshift(lastNode);
+                lastNode.x = this.nodes[0].x + NodeSize;
+                lastNode.y = this.nodes[0].y;
+                this.nodes.unshift(lastNode);
 
             default:
                 break;
         }
 
         //eat food
-        if (this.#nodes[0].x == food.x && this.#nodes[0].y == food.y) {
+        if (this.nodes[0].x == food.x && this.nodes[0].y == food.y) {
             this.eat()
+            food.y = -NodeSize
             cookFood()
         }
 
         //detect death
-        if (this.#nodes[0].x < -NodeSize / 2 || this.#nodes[0].x > c.clientWidth + NodeSize / 2) {
+        if (this.nodes[0].x < -NodeSize / 2 || this.nodes[0].x > c.clientWidth + NodeSize / 2) {
             die()
         }
-        if (this.#nodes[0].y < -NodeSize / 2 || this.#nodes[0].y > c.clientHeight + NodeSize / 2) {
+        if (this.nodes[0].y < -NodeSize / 2 || this.nodes[0].y > c.clientHeight + NodeSize / 2) {
             die()
         }
 
-        for (let i = 1; i < this.#nodes.length; i++) {
-            const n = this.#nodes[i];
-            if (this.#nodes[0].x == n.x && this.#nodes[0].y == n.y) die();
+        for (let i = 1; i < this.nodes.length; i++) {
+            const n = this.nodes[i];
+            if (this.nodes[0].x == n.x && this.nodes[0].y == n.y) die();
         }
-
-
     }
 }
 
@@ -187,7 +186,19 @@ function randomPosition() {
 }
 
 function cookFood() {
-    food = new Node(randomPosition(), randomPosition(), clrRed)
+    let x, y
+    let genLoop = setInterval(() => {
+        x = randomPosition();
+        y = randomPosition();
+        snake.nodes.forEach(n => {
+            if (n.x != x && n.y != y) {
+                food = new Node(randomPosition(), randomPosition(), clrRed)
+                clearInterval(genLoop)
+            }
+        });
+    }, 1);
+
+
 }
 
 
@@ -200,12 +211,12 @@ const elements = {
     randomSentenceToTakeupSpace: document.getElementById("randomSentenceToTakeupSpace")
 }
 const langs = {
-    hun:{
+    hun: {
         start: "Kezdés",
         author: "Készítette: Horváth Péter",
         randomSentenceToTakeupSpace: "Nem a legeredetibb ötlet de ehez biztos kell egy hét hogy kész legyen (tévedtem)"
     },
-    eng:{
+    eng: {
         start: "Start",
         author: "Author",
         randomSentenceToTakeupSpace: "Not the most original idea, but it must take a week to be ready (I was wrong)"
@@ -217,6 +228,6 @@ function languageChange() {
     for (let e in elements) {
         console.log(e);
         elements[e].innerText = langs[langSelect.value][e]
-        
+
     }
 }
