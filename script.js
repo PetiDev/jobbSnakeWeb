@@ -86,14 +86,11 @@ class Snake {
             die()
         }
 
-for (let i = 1; i < this.#nodes.length; i++) {
-    const n = this.#nodes[i];
-    if(this.#nodes[0].x == n.x && this.#nodes[0].y ==n.y)die();
-}
+        for (let i = 1; i < this.#nodes.length; i++) {
+            const n = this.#nodes[i];
+            if (this.#nodes[0].x == n.x && this.#nodes[0].y == n.y) die();
+        }
 
-        //this.#nodes.forEach(n =>{
-        //    if(this.#nodes[0].x ==n.x || this.#nodes[0].y ==n.y)die();
-        //})
 
     }
 }
@@ -105,18 +102,18 @@ document.addEventListener("keydown", ({ key }) => {
             if (snake.direction == "down") return;
             snake.direction = "up"
             break;
-            
-            case "ArrowDown":
+
+        case "ArrowDown":
             if (snake.direction == "up") return;
             snake.direction = "down"
             break;
-            
-            case "ArrowLeft":
+
+        case "ArrowLeft":
             if (snake.direction == "right") return;
             snake.direction = "left"
             break;
-            
-            case "ArrowRight":
+
+        case "ArrowRight":
             if (snake.direction == "left") return;
             snake.direction = "right"
             break;
@@ -126,18 +123,19 @@ document.addEventListener("keydown", ({ key }) => {
     }
 })
 
-
-
-let snake = new Snake();
 let food;
+let snake = new Snake();
 cookFood()
-
 
 ctx.strokeStyle = clrGreen;
 ctx.fillStyle = clrGreen;
 ctx.strokeRect(0, 0, c.clientWidth, c.clientHeight)
 
 function startGame() {
+    if (game) clearInterval(game)
+    snake = new Snake();
+    cookFood()
+
     game = setInterval(() => {
         ctx.strokeStyle = clrGreen;
         ctx.fillStyle = clrGreen;
@@ -151,11 +149,13 @@ function startGame() {
 function die() {
     clearInterval(game)
     console.log("dead");
+
+
 }
 
 function randomPosition() {
-    
-    return c.clientWidth/widthInNodes * Math.floor(Math.random() * widthInNodes)
+
+    return c.clientWidth / widthInNodes * Math.floor(Math.random() * widthInNodes)
 }
 
 function cookFood() {
