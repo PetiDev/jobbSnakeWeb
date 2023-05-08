@@ -86,6 +86,15 @@ class Snake {
             die()
         }
 
+for (let i = 1; i < this.#nodes.length; i++) {
+    const n = this.#nodes[i];
+    if(this.#nodes[0].x == n.x && this.#nodes[0].y ==n.y)die();
+}
+
+        //this.#nodes.forEach(n =>{
+        //    if(this.#nodes[0].x ==n.x || this.#nodes[0].y ==n.y)die();
+        //})
+
     }
 }
 
