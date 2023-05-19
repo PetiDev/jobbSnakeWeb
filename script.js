@@ -218,7 +218,7 @@ const langs = {
     },
     eng: {
         start: "Start",
-        author: "Author",
+        author: "Author: Péter Horváth",
         randomSentenceToTakeupSpace: "Not the most original idea, but it must take a week to be ready (I was wrong)"
     },
     tur:{ //török
